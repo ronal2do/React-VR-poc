@@ -16,34 +16,40 @@ export default class WelcomeToVR extends Component {
 
     return (
       <View>
-        <Pano source={asset('marte.jpg')} />
+        <Pano source={asset('chess-world.jpg')} />
         <CylindricalPanel layer={{width: 4000, height: 720}} style={{position: 'absolute', transform: [{translate: [-1, 0, -5]}] }}>
-          <View
-            style={{
-              opacity: 1,
-              width: 4000,
-              height: 720,
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexDirection: 'row',
-            }}
-          >
-            <Panel image={'dog.jpg'}/>
-            <Panel image={'gato.jpg'}/>
-            <Panel image={'dog.jpg'}/>
-            <Panel image={'gato.jpg'}/>
-          </View>
-          <View >
           <View>
-            <Text
+            <View
               style={{
-                margin: 10,
-                fontSize: 30,
+                opacity: 1,
+                width: 4000,
+                height: 720,
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'row',
+              }}
+            >
+              <Panel image={'dog.jpg'}/>
+              <Panel image={'gato.jpg'}/>
+              <Panel image={'dog.jpg'}/>
+              <Panel image={'gato.jpg'}/>
+            </View>
+            <View
+              style={{
+                height: 40,
+                width: 900,
                 backgroundColor: 'grey',
               }}
             >
-             Menu
-            </Text>
+              <Text
+                style={{
+                  margin: 10,
+                  fontSize: 30,
+                }}
+              >
+              Menu
+              </Text>
+            </View>
           </View>
         </CylindricalPanel>
       </View>
