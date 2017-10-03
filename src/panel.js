@@ -7,14 +7,13 @@ import {
   View, 
   StyleSheet,
   VrButton,
+  Animated,
   CylindricalPanel
 } from 'react-vr';
 
 class Button extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {open: false};
-  }
+  state = {open: false};
+  
   render() {
     return (
       <VrButton
@@ -22,48 +21,62 @@ class Button extends React.Component {
           this.setState({open: !this.state.open});
         }}
       >
-        <Image
-          style={{
-            borderRadius: 20,
-            height: this.state.open ? 120 : 60,
-            margin: 10,
-            width: this.state.open ? 200 : 100}}
-            source={asset('gato.jpg')}
-        />
+        <Text>Ver</Text>
       </VrButton>
     );
   }
 }
 
 export default class Panel extends Component {
+  state = {
+    bounceValue: new Animated.Value(0),
+  };
+
+  componentDidMount() {
+    this.state.bounceValue.setValue(1.2);     // Start large
+    Animated.spring(                          // Base: spring, decay, timing
+      this.state.bounceValue,                 // Animate `bounceValue`
+      {
+        toValue: 0.8,                         // Animate to smaller size
+        friction: 2,                          // Bouncier spring
+      }
+    ).start();                                // Start the animation
+  }
+
   render() {
     const { image } = this.props;
     return (
-      <View
-        style={{
-          opacity: 1,
-          width: 400,
-          height: 720,
-        }}
-      >
-        <Text
+      <VrButton onClick={() => this.componentDidMount() }>
+
+        <Animated.View
           style={{
-            margin: 10,
-            fontSize: 30,
-            backgroundColor: 'grey',
+            opacity: 1,
+            width: 1,
+            height: 1,
+            transform: [                        // `transform` is an ordered array
+              {scale: this.state.bounceValue},  // Map `bounceValue` to `scale`
+            ]
           }}
         >
-          {image}
-        </Text>
-        <Image
-          style={{
-            width: 400,
-            height: 315,
-          }}
-          source={asset(image)}
-        />
-        <Button />
-      </View>
+          <Image
+            style={{
+              width: 1,
+              height: 1,
+            }}
+            source={asset(image)}
+          />
+          <Text
+            style={{
+              margin: 1,
+              fontSize: 30,
+              backgroundColor: 'grey',
+            }}
+          >
+            {image}
+          </Text>
+          <Button />
+        </Animated.View>
+      </VrButton>
     );
   }
 }
