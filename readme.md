@@ -5,7 +5,6 @@ https://www.fourkitchens.com/blog/development/react-vr-early-look-facebooks-fora
 
 ```
 yarn && yarn start
-yarn prroxy
 ```
 
 Now on your phone, in Chrome Canary, go to `https://<YOUR MACHINE IP HERE>/vr:8000`
