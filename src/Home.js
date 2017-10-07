@@ -101,18 +101,17 @@ export default class Home extends React.Component {
           style={{
             width: 5,
             flexDirection: 'row',
-            alignItems: 'flex-start',
-            justifyContent: 'flex-start',
+            alignItems: 'center',
+            justifyContent: 'center',
             layoutOrigin: [0.5, 0.5],
             opacity: this.state.fadeIn,
             transform: [
               {translateX: this.state.slideLeft},
-              {translateZ: -3}
+              {translateZ: -4}
             ],
             marginTop: -0.3
           }}
         >
-          {/* <MenuButtons/> */}
           <Panels
             stage={this.state.stage}
             environments={this.props.environments}
@@ -130,8 +129,8 @@ export default class Home extends React.Component {
           alignItems: 'flex-start',
           justifyContent: 'center',
           layoutOrigin: [0.5, 0.5],
-          transform: [{translate: [0, 0, -3]}],
-          // marginTop: 0.2
+          transform: [{translate: [0, 0, -5]}],
+          marginTop: -0.9
         }}>
           <Button
             updateScene={this.updateScene.bind(this)}
